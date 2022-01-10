@@ -3,8 +3,8 @@ import requests
 def disadvantage_score(cds_code):
     url = "https://api.caschooldashboard.org/LEAs/" + cds_code  +"/7/true"
     response = requests.get(url)
-    data = response.json()
     try:
+        data = response.json()
         score = data['disadvantaged']
     except:
         score = 0
@@ -13,8 +13,11 @@ def disadvantage_score(cds_code):
 def get_school_name(cds_code):
     url = "https://api.caschooldashboard.org/LEAs/" + cds_code  +"/7/true"
     response = requests.get(url)
-    data = response.json()
-    school = data['school']
+    try:
+        data = response.json()
+        school = data['school']
+    except:
+        school = ""
     return(school)
 
 if __name__ == '__main__':
